@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.appPlataformas.phonegap" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" versionCode="10">
+    <name>appPlataformas</name>
+    <description>
+        appPlataformas es el primer juego desarrollada bajo el framework kineticjs con canvas.
+    </description>
+    <author email="support@dhavico.com" href="http://dhavico.com">
+        dhavico
+    </author>
+</widget>
