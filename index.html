@@ -15,5 +15,31 @@
   <script type="text/javascript" src="js/puerta.js"></script>
   <script type="text/javascript" src="js/game.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
+  <script>
+  var Preloader;
+	var imgsAssets = ['imgs/heroe.jpg'];
+	window.addEventListener('load',function () {
+		Preloader = new createjs.LoadQueue();
+		Preloader.onProgress = progresoCarga;
+		Preloader.loadManifest(['imgs/heroe.jpg']);
+	    Preloader.on("complete", handleComplete, this);
+	    function handleComplete() {
+	            nivelUno();
+	      }
+		//cargar();
+	});
+	function cargar(){
+		
+		while(imgsAssets.length > 0){
+			var url = imgsAssets.shift();
+			Preloader.loadFile(url);
+		}
+	}
+	function progresoCarga(){
+		if(Preloader.progress == 1){
+			nivelUno();
+		}
+	}
+  </script>
 </body>
 </html>

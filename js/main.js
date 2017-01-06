@@ -5,6 +5,14 @@ var personaje;
 var grav = 0.8;
 var val_reb = 0;
 var juego = new Game();
+var imgEn = new Image();
+imgEn.src = 'imgs/enemigo.png';
+var imgMo = new Image();
+imgMo.src = 'imgs/moneda.png';
+var imgPl = new Image();
+imgPl.src = 'imgs/plataforma.jpg';
+var imgPu = new Image();
+imgPu.src = 'imgs/puerta.png';
 
 grupoAssets = new Kinetic.Group({
 	x: 0,
@@ -31,30 +39,30 @@ function nivelUno(){
 	juego.llave = true;
 	fondo = new Kinetic.Layer();
 	/* Enemigos */
-	grupoAssets.add(new Enemigo(200, stage.getHeight() - 75));
-	grupoAssets.add(new Enemigo(850, stage.getHeight()/ 3.9-60));
-	grupoAssets.add(new Enemigo(170, stage.getHeight()/ 3-60));
-	grupoAssets.add(new Enemigo(1020, stage.getHeight() - 75));
-	grupoAssets.add(new Enemigo(1120, stage.getHeight() - 75));
-	grupoAssets.add(new Enemigo(1220, stage.getHeight() - 75));
+	grupoAssets.add(new Enemigo(200, stage.getHeight() - 75,imgEn));
+	grupoAssets.add(new Enemigo(850, stage.getHeight()/ 3.9-60,imgEn));
+	grupoAssets.add(new Enemigo(170, stage.getHeight()/ 3-60,imgEn));
+	grupoAssets.add(new Enemigo(1020, stage.getHeight() - 75,imgEn));
+	grupoAssets.add(new Enemigo(1120, stage.getHeight() - 75,imgEn));
+	grupoAssets.add(new Enemigo(1220, stage.getHeight() - 75,imgEn));
 	/* Plataformas */
 	var piso = new Plataforma(0, stage.getHeight()-15);
 	piso.setWidth(stage.getWidth()*2);
 	grupoAssets.add(piso);
 
-	grupoAssets.add(new Plataforma(20, stage.getHeight()/1.5));
-	grupoAssets.add(new Plataforma(190, stage.getHeight()/3));
-	grupoAssets.add(new Plataforma(510, stage.getHeight()/1.6));
-	grupoAssets.add(new Plataforma(870, stage.getHeight()/3.9));
+	grupoAssets.add(new Plataforma(20, stage.getHeight()/1.5,imgPl));
+	grupoAssets.add(new Plataforma(190, stage.getHeight()/3,imgPl));
+	grupoAssets.add(new Plataforma(510, stage.getHeight()/1.6,imgPl));
+	grupoAssets.add(new Plataforma(870, stage.getHeight()/3.9,imgPl));
 	/* Monedas */
-	grupoAssets.add(new Moneda(350, stage.getHeight()/3-130));
-	grupoAssets.add(new Moneda(650, stage.getHeight()/2-130));
-	grupoAssets.add(new Moneda(80, stage.getHeight()-80));
-	grupoAssets.add(new Moneda(450, stage.getHeight()-200));
-	grupoAssets.add(new Moneda(910, stage.getHeight()/6));
-	grupoAssets.add(new Moneda(1220, stage.getHeight()-80));
+	grupoAssets.add(new Moneda(350, stage.getHeight()/3-130,imgMo));
+	grupoAssets.add(new Moneda(650, stage.getHeight()/2-130,imgMo));
+	grupoAssets.add(new Moneda(80, stage.getHeight()-80,imgMo));
+	grupoAssets.add(new Moneda(450, stage.getHeight()-200,imgMo));
+	grupoAssets.add(new Moneda(910, stage.getHeight()/6,imgMo));
+	grupoAssets.add(new Moneda(1220, stage.getHeight()-80,imgMo));
 	/* Puerta */
-	grupoAssets.add(new Puerta(910, stage.getHeight()-85));
+	grupoAssets.add(new Puerta(840, stage.getHeight()-128,imgPu));
 	personaje = new Heroe();
 	personaje.setX(0);
 	personaje.setY(stage.getHeight()- personaje.getHeight());
@@ -64,6 +72,7 @@ function nivelUno(){
 	fondo.add(grupoAssets);
 	fondo.add(puntaje);
 	stage.add(fondo);
+	intv = setInterval(frameLoop,1000/20);
 }
 function nivelDos(){
 	console.log('Bienvenido al nivel dos');
@@ -177,8 +186,6 @@ function actualizarTexto(){
 	puntaje.setText('Puntaje: ' + juego.puntaje);
 }
 addKeyBoardEvents();
-nivelUno();
-intv = setInterval(frameLoop,1000/20);
 function frameLoop(){
 	aplicarFuerzas();
 	actualizarTexto();

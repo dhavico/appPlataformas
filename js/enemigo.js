@@ -1,11 +1,11 @@
-function Enemigo(x, y){
+function Enemigo(x, y, imagen){
 	Kinetic.Rect.call(this);
 	this.setWidth(60);
 	this.setHeight(60);
 	this.contador = 0;
 	this.setX(x);
 	this.setY(y);
-	this.setFill('blue');
+	this.setFillPatternImage(imagen);
 	this.aleatorio = function(inferior, superior){
 		var posibilidades = superior - inferior;
 		var random = Math.random() * posibilidades;
