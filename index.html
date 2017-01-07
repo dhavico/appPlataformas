@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no" />
   <title>title</title>
+  <style type="text/css">
+  	body{
+  		background-image: url('imgs/fondo.png');
+  	}
+  	#saltar,#atras,#adelante {
+	    width: 70px;
+	    height: 70px;
+	    background-color: rgba(0,0,0,0.2);
+	    position: fixed;
+	    bottom: 20px;
+	    border-radius: 50%;
+	}
+
+	#saltar {
+	    left: 20px;
+	}
+
+	#atras {
+	    right: 100px;
+	}
+
+	#adelante {
+	    right: 20px;
+	}
+  </style>
 </head>
 <body>
 	<div id="game"></div>
-
+	<div id="saltar"></div>
+	<div id="atras"></div>
+	<div id="adelante"></div>
 	<script type="text/javascript" src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
   <script type="text/javascript" src="js/kinetic-v5.1.0.js"></script>
   <script type="text/javascript" src="js/heroe.js"></script>

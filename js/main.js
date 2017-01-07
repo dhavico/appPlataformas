@@ -5,6 +5,8 @@ var personaje;
 var grav = 0.8;
 var val_reb = 0;
 var juego = new Game();
+var imgHe = new Image();
+imgHe.src = 'imgs/heroe2.png';
 var imgEn = new Image();
 imgEn.src = 'imgs/enemigo.png';
 var imgMo = new Image();
@@ -20,8 +22,8 @@ grupoAssets = new Kinetic.Group({
 });
 stage = new Kinetic.Stage({
 	container: 'game',
-	width: 960,
-	height: 500
+	width: document.documentElement.clientWidth-20,
+	height: document.documentElement.clientHeight-20
 });
 puntaje = new Kinetic.Text({
 	text: 'Puntaje: 0',
@@ -63,7 +65,7 @@ function nivelUno(){
 	grupoAssets.add(new Moneda(1220, stage.getHeight()-80,imgMo));
 	/* Puerta */
 	grupoAssets.add(new Puerta(840, stage.getHeight()-128,imgPu));
-	personaje = new Heroe();
+	personaje = new Heroe(imgHe);
 	personaje.setX(0);
 	personaje.setY(stage.getHeight()- personaje.getHeight());
 	personaje.limiteDer = stage.getWidth() - personaje.getWidth();
@@ -98,6 +100,23 @@ function addKeyBoardEvents() {
 		keyboard[e.keyCode] = false;
 	});
 
+	addEvent(document.getElementById('saltar'),"click", function(e){
+		personaje.saltar();
+	});
+	var interval, interval2;
+	addEvent(document.getElementById('adelante'),"mousedown", function(e){
+		interval = setInterval(function(){personaje.caminar()},1000/20);
+	});
+	addEvent(document.getElementById('adelante'),"mouseup", function(e){
+		clearInterval(interval);
+	});
+	addEvent(document.getElementById('atras'),"mousedown", function(e){
+		interval2 = setInterval(function(){personaje.retroceder()},1000/20);
+	});
+	addEvent(document.getElementById('atras'),"mouseup", function(e){
+		clearInterval(interval2);
+	});
+
 	function addEvent(element,eventName,func){
 		if(element.addEventListener){
 			element.addEventListener(eventName, func, false);
@@ -106,6 +125,10 @@ function addKeyBoardEvents() {
 			element.attachEvent(eventName, func);
 		}
 	}
+}
+
+function addEventControl(){
+	
 }
 function hit(a, b){
 	var hit = false;
@@ -186,6 +209,7 @@ function actualizarTexto(){
 	puntaje.setText('Puntaje: ' + juego.puntaje);
 }
 addKeyBoardEvents();
+addEventControl();
 function frameLoop(){
 	aplicarFuerzas();
 	actualizarTexto();

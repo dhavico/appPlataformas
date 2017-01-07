@@ -1,14 +1,14 @@
-function Heroe(){
+function Heroe(imagen){
 	Kinetic.Rect.call(this);
-	this.setWidth(40);
-	this.setHeight(70);
+	this.setWidth(64);
+	this.setHeight(64);
 	this.vx = 15;
 	this.vy = 0;
 	this.limiteDer = 0;
 	this.limiteTope = 0;
 	this.direccion = 1;
 	this.contador = 0;
-	this.setFill('red');
+	this.setFillPatternImage(imagen);
 	this.caminar = function(){
 		console.log(this.vx);
 		this.move({x: this.vx,y:0});
